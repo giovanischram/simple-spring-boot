@@ -1,0 +1,5 @@
+com/schram/simplespringboot/model/Person.class
+com/schram/simplespringboot/ServletInitializer.class
+com/schram/simplespringboot/dao/PersonDao.class
+com/schram/simplespringboot/controller/PersonController.class
+com/schram/simplespringboot/SimpleSpringBootApplication.class
