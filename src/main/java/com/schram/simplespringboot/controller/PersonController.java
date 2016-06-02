@@ -1,5 +1,7 @@
 package com.schram.simplespringboot.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,14 +16,16 @@ import com.schram.simplespringboot.model.Person;
 @RequestMapping("/persons")
 public class PersonController {
 
-	private static final String PERSONS_KEY = "persons";
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(PersonController.class);
+	
 	private static final String VIEW = "Persons";
+	private static final String PERSONS_KEY = "persons";
 	
 	@Autowired private PersonDao personDao;
 	
 	@RequestMapping
 	public ModelAndView getPersons() {
+		LOGGER.info("Searching all persons.");
 		ModelAndView mv = new ModelAndView(VIEW);
 		Iterable<Person> persons = personDao.findAll();
 		mv.addObject(PERSONS_KEY, persons);
@@ -31,6 +35,7 @@ public class PersonController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView save(Person person) {
+		LOGGER.info("Saving person: " + person.getName());
 		personDao.save(person);
 		return getPersons();
 	}
