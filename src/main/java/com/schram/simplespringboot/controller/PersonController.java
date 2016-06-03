@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.schram.simplespringboot.dao.PersonDao;
 import com.schram.simplespringboot.model.Person;
 
-
 @Controller
 @RequestMapping("/persons")
 public class PersonController {
@@ -20,7 +19,7 @@ public class PersonController {
 	
 	private static final String VIEW = "Persons";
 	private static final String PERSONS_KEY = "persons";
-	
+
 	@Autowired private PersonDao personDao;
 	
 	@RequestMapping
