@@ -3,6 +3,8 @@ package com.schram.simplespringboot.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,7 +28,11 @@ public class PersonController {
 	public ModelAndView getPersons() {
 		LOGGER.info("Searching all persons.");
 		ModelAndView mv = new ModelAndView(VIEW);
-		Iterable<Person> persons = personDao.findAll();
+		// Iterable<Person> persons = personDao.findAll();
+		
+		// Accessing the first page of Person by a page size of 2
+		Page<Person> persons = personDao.findAll(new PageRequest(0, 2));
+		
 		mv.addObject(PERSONS_KEY, persons);
 		mv.addObject(new Person());
 		return mv;
